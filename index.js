@@ -6,8 +6,14 @@ var app = new Vue({
         textColor: 'white',
         network: brain,
     },
+
+    /* Constructor method, instantiates a neural network object and
+    runs RGB values that are from 0-1 as training data */
     created: function() {
         this.network = new brain.NeuralNetwork();
+
+        /* Based on these RGB values, we expect either a dark
+        or light output */
         this.network.train([
             { input: {r: 1, g: 1, b: 1}, output: {dark: 1} },
             { input: {r: 1, g: 0, b: 0}, output: {light: 1} },
@@ -29,13 +35,17 @@ var app = new Vue({
         ]);
     },
     methods: {
+        // This method is called whenever a new color is selected
         colorDecider() {
+            // Grab the hex value  of the background and convert it to RGB
             let rgb = this.getRGB(this.bgColor);
             console.log(rgb);
 
+            // Pass the converted RGB value to the NN and output its likely result
             let result = brain.likely(rgb, this.network);
             console.log('Expected color outcome based on the background is: ' + result);
 
+            // Simply change the color of the text to black or white
             if (result == 'dark')
                 this.textColor = 'black';
             else
@@ -43,6 +53,7 @@ var app = new Vue({
 
         },
 
+        // Convert hex values to RGB -- didn't write this, found it on stackoverflow
         getRGB(hex) {
             var shorthandRegex = /^#?([a-f\d])([a-f\d])([a-f\d])$/i;
             hex = hex.toString().replace(shorthandRegex, function(m, r, g, b) {
