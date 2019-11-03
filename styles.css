@@ -1,0 +1,11 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+#canvas {
+    height: 50vh;
+    padding: 100px;
+    background: black;
+    color: #FFFFFF;
+    font-size: 60px;
+}
