@@ -1,2 +1,2 @@
 # dark-or-light
-Using the Vue.js framework and brain.js library to change color of text to dark or light depending on the background color
+Just playing around with Vue.js and using brain.js to change color of text to dark or light depending on the background color
